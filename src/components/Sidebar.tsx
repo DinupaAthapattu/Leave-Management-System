@@ -28,12 +28,28 @@
 //   const links =
 //     role === 'admin'
 //       ? [
-//           { to: '/admin', label: 'Dashboard', icon: <LayoutDashboard size={20} /> },
-//           { to: '/history', label: 'Leave History', icon: <Clock size={20} /> },
+//           {
+//             to: '/admin',
+//             label: 'Dashboard',
+//             icon: <LayoutDashboard size={20} />,
+//           },
+//           {
+//             to: '/admin/history',
+//             label: 'Leave History',
+//             icon: <Clock size={20} />,
+//           },
 //         ]
 //       : [
-//           { to: '/employee', label: 'Dashboard', icon: <LayoutDashboard size={20} /> },
-//           { to: '/history', label: 'Leave History', icon: <Clock size={20} /> },
+//           {
+//             to: '/employee',
+//             label: 'Dashboard',
+//             icon: <LayoutDashboard size={20} />,
+//           },
+//           {
+//             to: '/employee/history',
+//             label: 'Leave History',
+//             icon: <Clock size={20} />,
+//           },
 //         ];
 
 //   return (
@@ -111,6 +127,7 @@
 // export default Sidebar;
 
 
+// src/components/Sidebar.tsx
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
@@ -165,7 +182,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`bg-primary text-white h-screen transition-all duration-300 ${
+      className={`bg-primary text-white fixed md:static z-50 transition-all duration-300 h-full ${
         collapsed ? 'w-16' : 'w-64'
       } flex flex-col`}
     >
@@ -185,7 +202,7 @@ const Sidebar = () => {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1">
+      <nav className="flex-1 overflow-y-auto">
         <ul className="mt-4 space-y-1">
           {links.map(({ to, label, icon }) => (
             <li key={to}>

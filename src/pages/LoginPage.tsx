@@ -1,10 +1,8 @@
-
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Lottie from 'lottie-react';
-import toast from 'react-hot-toast'; // ✅ import toast
+import toast from 'react-hot-toast';
 import loginAnimation from '../assets/loginAnimation.json';
 import { useUser } from '../context/UserContext';
 import { mockUsers } from '../constants/mockData';
@@ -21,49 +19,69 @@ const LoginPage = () => {
     );
 
     if (!found) {
-      toast.error('Invalid username or password'); // ✅ show error toast
+      toast.error('Invalid username or password');
       return;
     }
 
     setUser(found);
-    toast.success(`Welcome back, ${found.username}!`); // ✅ show success toast
+    toast.success(`Welcome back, ${found.username}!`);
     navigate(found.role === 'admin' ? '/admin' : '/employee');
   };
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-background text-heading">
-      {/* Left Panel */}
+      {/* Left Side Animation - Desktop */}
       <motion.div
-        className="md:w-1/2 w-full flex items-center justify-center bg-primary text-white p-10"
+        className="hidden md:flex w-full md:w-1/2 items-center justify-center bg-primary text-white px-6 py-10"
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
         <div className="flex flex-col items-center text-center max-w-lg">
-          <h1 className="text-5xl font-extrabold mb-4">Leave Management <span className="block">System</span></h1>
-          <p className="text-lg text-white/90 mb-8 px-4">
+          <h1 className="text-4xl sm:text-5xl font-extrabold mb-4">
+            Leave Management <span className="block">System</span>
+          </h1>
+          <p className="text-base sm:text-lg text-white/90 mb-8 px-4">
             Effortlessly manage leave requests and approvals with our smart system.
           </p>
-          <div className="w-72 h-72">
+          <div className="w-56 h-56 sm:w-72 sm:h-72">
             <Lottie animationData={loginAnimation} loop />
           </div>
         </div>
       </motion.div>
 
-      {/* Right Panel */}
+      {/* Top Animation - Mobile */}
       <motion.div
-        className="md:w-1/2 w-full flex justify-center items-center px-6 py-12 bg-accent"
+        className="md:hidden w-full bg-primary text-white px-6 py-6"
+        initial={{ y: -30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="text-center">
+          <h1 className="text-3xl font-extrabold mb-2">Leave Management System</h1>
+          <p className="text-sm text-white/90 mb-4">
+            Apply and track leave requests with ease
+          </p>
+          <div className="w-40 h-40 mx-auto">
+            <Lottie animationData={loginAnimation} loop />
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Right Side - Login Form */}
+      <motion.div
+        className="w-full md:w-1/2 flex justify-center items-center px-4 sm:px-8 py-10 bg-accent"
         initial={{ x: 100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
         <motion.div
-          className="w-full max-w-md bg-white shadow-2xl rounded-3xl p-8 border border-border"
+          className="w-full max-w-md bg-white shadow-2xl rounded-3xl p-6 sm:p-8 border border-border"
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
+          transition={{ delay: 0.4, duration: 0.4 }}
         >
-          <h2 className="text-3xl font-bold text-center text-heading mb-6">Welcome Back!</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-heading mb-6">Welcome Back!</h2>
 
           <div className="mb-4">
             <label className="block text-sm font-semibold mb-1">Username</label>
