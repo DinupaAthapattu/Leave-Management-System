@@ -1,7 +1,8 @@
 // src/context/UserContext.tsx
 import { createContext, useContext } from 'react';
 
-export type Role = 'admin' | 'employee';
+export type ADMIN = 'admin';
+export type Role = ADMIN | 'employee';
 
 export type User = {
   username: string;
